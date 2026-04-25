@@ -8,11 +8,19 @@ import { Button } from "@/components/ui/button";
 import { ProductPreviewModal } from "@/components/product-preview-modal";
 import type { Product } from "@/types/product";
 
-type Props = { product: Product };
+type Props = { product: Product; index?: number };
 
-export function ProductCard({ product }: Props) {
+const TILT = [-1.5, 1.2, -2, 0.8, 2, -1, 1.5, -0.5];
+const TAPE_COLORS = ["bg-secondary", "bg-tertiary", "bg-accent/70", "bg-primary/80"];
+const TAPE_ROT = [-6, 4, -3, 7, -8, 2, -5, 5];
+
+export function ProductCard({ product, index = 0 }: Props) {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [buying, setBuying] = useState(false);
+
+  const tilt = TILT[index % TILT.length];
+  const tapeRot = TAPE_ROT[index % TAPE_ROT.length];
+  const tapeColor = TAPE_COLORS[index % TAPE_COLORS.length];
 
   async function handleBuy() {
     setBuying(true);
@@ -35,46 +43,62 @@ export function ProductCard({ product }: Props) {
     <>
       <motion.article
         layout
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.35 }}
-        className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10"
+        initial={{ opacity: 0, y: 60, rotate: tilt - 4, scale: 0.85 }}
+        whileInView={{ opacity: 1, y: 0, rotate: tilt, scale: 1 }}
+        exit={{ opacity: 0, y: -10, scale: 0.9 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{
+          type: "spring",
+          stiffness: 90,
+          damping: 14,
+          delay: (index % 6) * 0.08,
+        }}
+        whileHover={{ rotate: 0, y: -8, scale: 1.02 }}
+        className="group relative flex flex-col rounded-2xl border-toy-thick bg-card p-3 shadow-toy"
       >
+        {/* tape decoration */}
+        <span
+          style={{ transform: `rotate(${tapeRot}deg)` }}
+          className={`absolute -top-3 start-1/2 z-10 h-6 w-20 -translate-x-1/2 border-2 border-foreground/40 ${tapeColor}`}
+          aria-hidden
+        />
+
+        {/* image area */}
         <button
           type="button"
           onClick={() => setPreviewOpen(true)}
           aria-label={`תצוגה מקדימה של ${product.name}`}
-          className="relative block aspect-[4/3] overflow-hidden bg-muted"
+          className="relative block aspect-[4/3] overflow-hidden rounded-xl border-toy bg-muted transition-transform group-hover:rotate-1"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={product.coverImage}
             alt={product.name}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/30 to-transparent p-3 opacity-0 transition-opacity group-hover:opacity-100">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-primary">
-              <Eye className="size-3.5" /> תצוגה מקדימה
+          <div className="absolute inset-0 flex items-end justify-center bg-foreground/0 p-3 opacity-0 transition-all group-hover:bg-foreground/15 group-hover:opacity-100">
+            <span className="inline-flex items-center gap-1.5 rounded-full border-toy bg-card px-3 py-1.5 text-xs font-extrabold shadow-toy-sm">
+              <Eye className="size-3.5" /> הצצה
             </span>
           </div>
         </button>
 
-        <div className="flex flex-1 flex-col gap-3 p-5">
+        <div className="flex flex-1 flex-col gap-3 p-3 pt-4">
           <div className="flex items-start justify-between gap-3">
-            <h3 className="text-lg font-bold leading-tight">{product.name}</h3>
-            <span className="shrink-0 rounded-full bg-accent px-3 py-1 text-sm font-bold text-accent-foreground">
+            <h3 className="font-display text-2xl leading-tight">
+              {product.name}
+            </h3>
+            <span className="shrink-0 -rotate-3 rounded-xl border-toy bg-secondary px-3 py-1 text-base font-extrabold shadow-toy-sm">
               ₪{product.price}
             </span>
           </div>
-          <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3">
+          <p className="line-clamp-3 text-sm leading-relaxed text-foreground/75">
             {product.description}
           </p>
           <div className="mt-auto flex gap-2 pt-2">
             <Button
               type="button"
-              variant="outline"
-              className="flex-1"
+              className="flex-1 rounded-xl border-toy bg-card font-bold text-foreground shadow-toy-sm toy-press hover:bg-card"
               onClick={() => setPreviewOpen(true)}
             >
               <Eye className="size-4" /> הצצה
@@ -83,7 +107,7 @@ export function ProductCard({ product }: Props) {
               type="button"
               onClick={handleBuy}
               disabled={buying}
-              className="flex-1 bg-brand-gradient text-white"
+              className="flex-1 rounded-xl border-toy bg-primary font-bold text-primary-foreground shadow-toy-sm toy-press hover:bg-primary"
             >
               {buying ? (
                 <Loader2 className="size-4 animate-spin" />

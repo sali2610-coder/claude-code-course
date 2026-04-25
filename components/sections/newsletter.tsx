@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion } from "framer-motion";
 import { Gift, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -14,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Confetti, Star } from "@/components/decorations";
 import { newsletterSchema, type NewsletterInput } from "@/lib/schemas";
 
 export function Newsletter() {
@@ -45,27 +47,45 @@ export function Newsletter() {
   }
 
   return (
-    <section id="newsletter" className="py-20">
+    <section id="newsletter" className="border-y-[3px] border-foreground bg-accent py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-10 text-white shadow-2xl shadow-primary/30 sm:p-14">
-          <div className="pointer-events-none absolute -end-10 -top-10 size-40 rounded-full bg-white/15 blur-2xl" />
-          <div className="pointer-events-none absolute -bottom-10 -start-10 size-48 rounded-full bg-white/10 blur-2xl" />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85, rotate: -2 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: -1.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 14,
+          }}
+          whileHover={{ rotate: 0, transition: { type: "spring", stiffness: 250 } }}
+          className="relative overflow-hidden rounded-3xl border-toy-thick bg-secondary p-10 shadow-toy-xl sm:p-14"
+        >
+          <Confetti />
+
+          {/* corner star */}
+          <Star className="pointer-events-none absolute -end-6 -top-6 size-24 text-primary rotate-12" />
+          <Star className="pointer-events-none absolute -bottom-8 -start-4 size-16 text-tertiary -rotate-12" />
 
           <div className="relative text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-sm font-semibold backdrop-blur">
+            <span className="inline-flex -rotate-2 items-center gap-2 rounded-full border-toy bg-card px-4 py-1.5 text-sm font-bold shadow-toy-sm">
               <Gift className="size-4" /> מתנה ראשונה בחינם
-            </div>
-            <h2 className="text-3xl font-extrabold sm:text-4xl">
-              הצטרפי לקהילת הגננות שלנו
+            </span>
+            <h2 className="mt-5 font-display text-4xl leading-tight sm:text-5xl">
+              הצטרפי לקהילת
+              <br />
+              <span className="inline-block bg-card border-toy px-4 py-1 mt-2 -rotate-1 shadow-toy">
+                הגננות שלנו
+              </span>
             </h2>
-            <p className="mt-3 text-white/90">
-              ותקבלי קובץ הדפסה חינמי מייד למייל + עדכונים על מוצרים חדשים.
+            <p className="mt-5 font-handwritten text-2xl">
+              ותקבלי קובץ הדפסה חינמי מייד למייל ✦
             </p>
 
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
+                className="relative mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
               >
                 <FormField
                   control={form.control}
@@ -76,12 +96,12 @@ export function Newsletter() {
                         <Input
                           type="email"
                           placeholder="האימייל שלך"
-                          className="h-12 bg-white text-foreground placeholder:text-muted-foreground"
+                          className="h-14 rounded-xl border-toy bg-card px-4 text-base font-bold shadow-toy-sm placeholder:text-foreground/50"
                           disabled={submitting || done}
                           {...field}
                         />
                       </FormControl>
-                      <FormMessage className="text-right text-white" />
+                      <FormMessage className="text-right" />
                     </FormItem>
                   )}
                 />
@@ -89,20 +109,20 @@ export function Newsletter() {
                   type="submit"
                   size="lg"
                   disabled={submitting || done}
-                  className="h-12 bg-white px-6 text-base font-bold text-primary hover:bg-white/90"
+                  className="h-14 rounded-xl border-toy bg-primary px-8 text-base font-extrabold text-primary-foreground shadow-toy toy-press hover:bg-primary"
                 >
                   {submitting ? (
                     <Loader2 className="size-5 animate-spin" />
                   ) : done ? (
                     "✓ נרשמת!"
                   ) : (
-                    "שלחי לי"
+                    "שלחי לי ✦"
                   )}
                 </Button>
               </form>
             </Form>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

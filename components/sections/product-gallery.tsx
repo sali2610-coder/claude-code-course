@@ -3,11 +3,19 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ProductCard } from "@/components/product-card";
+import { CrayonUnderline } from "@/components/decorations";
 import { CATEGORIES, PRODUCTS } from "@/lib/constants";
 import type { Category } from "@/types/product";
 import { cn } from "@/lib/utils";
 
 type Filter = Category | "all";
+
+const PILL_COLORS: Record<string, string> = {
+  all: "bg-card",
+  holidays: "bg-primary text-primary-foreground",
+  literacy: "bg-secondary",
+  design: "bg-tertiary",
+};
 
 export function ProductGallery() {
   const [active, setActive] = useState<Filter>("all");
@@ -21,52 +29,79 @@ export function ProductGallery() {
   );
 
   return (
-    <section id="gallery" className="bg-muted/30 py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl font-extrabold sm:text-4xl">
-            החנות — <span className="text-brand-gradient">כל מה שצריך לגן</span>
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            גללי, הציצי, סנני — ובחרי בדיוק את מה שאת צריכה.
-          </p>
-        </div>
+    <section
+      id="gallery"
+      className="relative border-y-[3px] border-foreground bg-muted py-24"
+    >
+      {/* decorative dots layer */}
+      <div className="pointer-events-none absolute inset-0 bg-dots opacity-40" />
 
-        <div className="mb-10 flex flex-wrap justify-center gap-2">
-          {CATEGORIES.map((cat) => {
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12 text-center"
+        >
+          <span className="inline-block -rotate-2 rounded-full border-toy bg-accent px-4 py-1 text-xs font-bold text-accent-foreground shadow-toy-sm">
+            ✦ החנות ✦
+          </span>
+          <h2 className="mt-4 font-display text-4xl sm:text-5xl">
+            כל מה שצריך{" "}
+            <span className="relative inline-block">
+              לגן
+              <CrayonUnderline className="text-primary" />
+            </span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-md text-foreground/70">
+            <span className="font-handwritten text-2xl text-foreground">גללי, הציצי, סנני</span> —
+            ובחרי בדיוק את מה שאת צריכה.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 flex flex-wrap justify-center gap-3"
+        >
+          {CATEGORIES.map((cat, i) => {
             const selected = active === cat.value;
             return (
               <button
                 key={cat.value}
                 type="button"
                 onClick={() => setActive(cat.value as Filter)}
+                style={{ transform: `rotate(${i % 2 === 0 ? -1 : 1}deg)` }}
                 className={cn(
-                  "rounded-full border px-4 py-2 text-sm font-semibold transition-all",
+                  "rounded-2xl border-toy px-5 py-2.5 text-sm font-extrabold transition-all toy-press",
                   selected
-                    ? "border-transparent bg-brand-gradient text-white shadow-md shadow-primary/30"
-                    : "border-border bg-background text-foreground hover:bg-muted"
+                    ? `${PILL_COLORS[cat.value]} shadow-toy`
+                    : "bg-card shadow-toy-sm hover:bg-secondary/40"
                 )}
               >
                 {cat.label}
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
         <motion.div
           layout
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
         >
           <AnimatePresence mode="popLayout">
-            {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
+            {filtered.map((p, i) => (
+              <ProductCard key={p.id} product={p} index={i} />
             ))}
           </AnimatePresence>
         </motion.div>
 
         {filtered.length === 0 && (
-          <p className="mt-10 text-center text-muted-foreground">
-            אין עדיין מוצרים בקטגוריה הזו — חזרי בקרוב.
+          <p className="mt-10 text-center font-handwritten text-2xl text-foreground/70">
+            אופס — אין כאן מוצרים. חזרי בקרוב!
           </p>
         )}
       </div>

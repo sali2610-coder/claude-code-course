@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="hsl(340, 80%, 70%)"/>
-      <stop offset="100%" stop-color="hsl(300, 70%, 55%)"/>
-    </linearGradient>
-    <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
-      <circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.25)"/>
+    <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="16" cy="16" r="2.5" fill="#1A110826"/>
     </pattern>
   </defs>
-  <rect width="800" height="600" fill="url(#g)"/>
+  <rect width="800" height="600" fill="#7BD389"/>
   <rect width="800" height="600" fill="url(#dots)"/>
-  <g transform="translate(400, 300)">
-    <text text-anchor="middle" font-family="Heebo, Arial Hebrew, sans-serif" font-weight="800" font-size="54" fill="white" y="-10">יום הולדת</text>
-    <text text-anchor="middle" font-family="Heebo, Arial Hebrew, sans-serif" font-weight="500" font-size="24" fill="rgba(255,255,255,0.9)" y="40">לחצי לפרטים</text>
-  </g>
+  <!-- corner shapes -->
+  <circle cx="80" cy="80" r="40" fill="#E63946" stroke="#1A1108" stroke-width="4"/>
+  <rect x="670" y="50" width="80" height="80" rx="14" fill="#1A1108" transform="rotate(15 710 90)" opacity="0.85"/>
+  <polygon points="720,510 770,570 670,570" fill="#E63946" stroke="#1A1108" stroke-width="4"/>
+  <!-- center rounded rect (the "card" inside) -->
+  <rect x="96" y="192" width="608" height="216" rx="20" fill="#FFF8E7" stroke="#1A1108" stroke-width="5"/>
+  <text x="400" y="300" text-anchor="middle" font-family="'Heebo','Arial Hebrew',sans-serif" font-weight="900" font-size="60" fill="#1A1108">יום הולדת</text>
+  <text x="400" y="354" text-anchor="middle" font-family="'Heebo','Arial Hebrew',sans-serif" font-weight="700" font-size="26" fill="#1A1108" opacity="0.75">✦ לחצי לפרטים ✦</text>
   
 </svg>

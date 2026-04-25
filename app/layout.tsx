@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
-import { Heebo } from "next/font/google";
+import { Suez_One, Rubik, Amatic_SC } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
-const heebo = Heebo({
+const suezOne = Suez_One({
+  variable: "--font-display",
+  subsets: ["hebrew", "latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const rubik = Rubik({
   variable: "--font-sans",
   subsets: ["hebrew", "latin"],
+  display: "swap",
+});
+
+const amatic = Amatic_SC({
+  variable: "--font-handwritten",
+  subsets: ["hebrew", "latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -36,7 +50,7 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
-      className={`${heebo.variable} h-full antialiased`}
+      className={`${rubik.variable} ${suezOne.variable} ${amatic.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}

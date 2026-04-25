@@ -8,8 +8,9 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-handwritten: var(--font-handwritten);
+  --font-heading: var(--font-display);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -29,6 +30,8 @@
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -49,73 +52,72 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.2 0.04 310);
+  /* Bauhaus toys palette — warm cream + tomato red + mustard + cobalt + mint */
+  --background: oklch(0.965 0.025 78);
+  --foreground: oklch(0.18 0.04 30);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.04 310);
+  --card-foreground: oklch(0.18 0.04 30);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.04 310);
-  --primary: oklch(0.68 0.22 350);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.55 0.22 295);
-  --secondary-foreground: oklch(0.99 0 0);
-  --muted: oklch(0.97 0.01 320);
-  --muted-foreground: oklch(0.5 0.04 310);
-  --accent: oklch(0.95 0.04 320);
-  --accent-foreground: oklch(0.35 0.15 320);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.02 320);
-  --input: oklch(0.92 0.02 320);
-  --ring: oklch(0.68 0.22 350);
-  --brand-gradient: linear-gradient(135deg, oklch(0.68 0.22 350), oklch(0.55 0.22 295));
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --popover-foreground: oklch(0.18 0.04 30);
+  --primary: oklch(0.62 0.22 28);              /* tomato red */
+  --primary-foreground: oklch(0.99 0.01 78);
+  --secondary: oklch(0.84 0.18 85);            /* mustard yellow */
+  --secondary-foreground: oklch(0.18 0.04 30);
+  --tertiary: oklch(0.78 0.16 145);            /* mint green */
+  --tertiary-foreground: oklch(0.18 0.04 30);
+  --accent: oklch(0.5 0.18 250);               /* cobalt blue */
+  --accent-foreground: oklch(0.99 0.01 78);
+  --muted: oklch(0.93 0.025 78);
+  --muted-foreground: oklch(0.4 0.04 30);
+  --destructive: oklch(0.55 0.24 28);
+  --border: oklch(0.18 0.04 30);               /* near-black border */
+  --input: oklch(0.18 0.04 30);
+  --ring: oklch(0.62 0.22 28);
+  --chart-1: oklch(0.62 0.22 28);
+  --chart-2: oklch(0.84 0.18 85);
+  --chart-3: oklch(0.5 0.18 250);
+  --chart-4: oklch(0.78 0.16 145);
+  --chart-5: oklch(0.18 0.04 30);
+  --radius: 1.4rem;
+  --sidebar: oklch(0.965 0.025 78);
+  --sidebar-foreground: oklch(0.18 0.04 30);
+  --sidebar-primary: oklch(0.62 0.22 28);
+  --sidebar-primary-foreground: oklch(0.99 0.01 78);
+  --sidebar-accent: oklch(0.93 0.025 78);
+  --sidebar-accent-foreground: oklch(0.18 0.04 30);
+  --sidebar-border: oklch(0.18 0.04 30);
+  --sidebar-ring: oklch(0.62 0.22 28);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: oklch(0.16 0.02 30);
+  --foreground: oklch(0.97 0.02 78);
+  --card: oklch(0.22 0.03 30);
+  --card-foreground: oklch(0.97 0.02 78);
+  --popover: oklch(0.22 0.03 30);
+  --popover-foreground: oklch(0.97 0.02 78);
+  --primary: oklch(0.7 0.22 28);
+  --primary-foreground: oklch(0.16 0.02 30);
+  --secondary: oklch(0.84 0.18 85);
+  --secondary-foreground: oklch(0.16 0.02 30);
+  --tertiary: oklch(0.78 0.16 145);
+  --tertiary-foreground: oklch(0.16 0.02 30);
+  --accent: oklch(0.6 0.2 250);
+  --accent-foreground: oklch(0.97 0.02 78);
+  --muted: oklch(0.28 0.03 30);
+  --muted-foreground: oklch(0.7 0.02 78);
+  --destructive: oklch(0.7 0.22 28);
+  --border: oklch(0.97 0.02 78);
+  --input: oklch(0.97 0.02 78);
+  --ring: oklch(0.7 0.22 28);
+  --sidebar: oklch(0.22 0.03 30);
+  --sidebar-foreground: oklch(0.97 0.02 78);
+  --sidebar-primary: oklch(0.7 0.22 28);
+  --sidebar-primary-foreground: oklch(0.16 0.02 30);
+  --sidebar-accent: oklch(0.28 0.03 30);
+  --sidebar-accent-foreground: oklch(0.97 0.02 78);
+  --sidebar-border: oklch(0.97 0.02 78);
+  --sidebar-ring: oklch(0.7 0.22 28);
 }
 
 @layer base {
@@ -124,19 +126,108 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 1px 1px, oklch(0.18 0.04 30 / 0.06) 1px, transparent 0);
+    background-size: 28px 28px;
   }
   html {
     @apply font-sans;
   }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
 }
 
-@utility bg-brand-gradient {
-  background-image: var(--brand-gradient);
+/* === Toy aesthetic utilities === */
+
+@utility shadow-toy {
+  box-shadow: 5px 5px 0 0 var(--color-foreground);
+}
+@utility shadow-toy-sm {
+  box-shadow: 3px 3px 0 0 var(--color-foreground);
+}
+@utility shadow-toy-lg {
+  box-shadow: 8px 8px 0 0 var(--color-foreground);
+}
+@utility shadow-toy-xl {
+  box-shadow: 12px 12px 0 0 var(--color-foreground);
+}
+@utility shadow-toy-color {
+  box-shadow: 5px 5px 0 0 var(--color-primary);
+}
+@utility shadow-toy-yellow {
+  box-shadow: 5px 5px 0 0 var(--color-secondary);
+}
+@utility shadow-toy-blue {
+  box-shadow: 5px 5px 0 0 var(--color-accent);
 }
 
-@utility text-brand-gradient {
-  background-image: var(--brand-gradient);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+/* "press" interaction — clicks the offset shadow into the element */
+@utility toy-press {
+  transition-property: transform, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  &:active {
+    box-shadow: 0 0 0 0 var(--color-foreground);
+    transform: translate(4px, 4px);
+  }
+}
+
+/* hand-written font helper */
+@utility font-handwritten {
+  font-family: var(--font-handwritten);
+}
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+/* polka-dot atmospheric pattern */
+@utility bg-dots {
+  background-image: radial-gradient(circle, var(--color-foreground) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+@utility bg-dots-yellow {
+  background-image: radial-gradient(circle, var(--color-secondary) 2px, transparent 2px);
+  background-size: 22px 22px;
+}
+@utility bg-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-foreground) 0,
+    var(--color-foreground) 1.5px,
+    transparent 1.5px,
+    transparent 12px
+  );
+}
+@utility bg-grid {
+  background-image:
+    linear-gradient(var(--color-foreground) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* squircle border util */
+@utility border-toy {
+  border-width: 3px;
+  border-color: var(--color-foreground);
+  border-style: solid;
+}
+@utility border-toy-thick {
+  border-width: 4px;
+  border-color: var(--color-foreground);
+  border-style: solid;
+}
+
+/* a wobble keyframe for hover */
+@keyframes toy-wobble {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-1.5deg); }
+  75% { transform: rotate(1.5deg); }
+}
+@utility hover-wobble {
+  transition: transform 200ms;
+  &:hover {
+    animation: toy-wobble 0.6s ease-in-out;
+  }
 }

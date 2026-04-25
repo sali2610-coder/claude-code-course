@@ -37,9 +37,9 @@ export function ProductPreviewModal({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-3xl p-0 overflow-hidden">
+      <DialogContent className="max-w-3xl overflow-hidden rounded-3xl border-toy-thick bg-card p-0 shadow-toy-xl">
         <div className="grid gap-0 md:grid-cols-[1.2fr_1fr]">
-          <div className="relative aspect-[4/3] bg-muted md:aspect-auto">
+          <div className="relative aspect-[4/3] border-b-[3px] border-foreground bg-muted md:aspect-auto md:border-b-0 md:border-e-[3px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={images[idx]}
@@ -54,7 +54,7 @@ export function ProductPreviewModal({
                     setIdx((i) => (i - 1 + images.length) % images.length)
                   }
                   aria-label="הקודם"
-                  className="absolute start-3 top-1/2 grid -translate-y-1/2 place-items-center rounded-full bg-white/90 p-2 shadow-md backdrop-blur hover:bg-white"
+                  className="absolute start-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full border-toy bg-card shadow-toy-sm toy-press"
                 >
                   <ChevronRight className="size-5 rtl:rotate-180" />
                 </button>
@@ -62,7 +62,7 @@ export function ProductPreviewModal({
                   type="button"
                   onClick={() => setIdx((i) => (i + 1) % images.length)}
                   aria-label="הבא"
-                  className="absolute end-3 top-1/2 grid -translate-y-1/2 place-items-center rounded-full bg-white/90 p-2 shadow-md backdrop-blur hover:bg-white"
+                  className="absolute end-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full border-toy bg-card shadow-toy-sm toy-press"
                 >
                   <ChevronLeft className="size-5 rtl:rotate-180" />
                 </button>
@@ -73,8 +73,8 @@ export function ProductPreviewModal({
                       type="button"
                       onClick={() => setIdx(i)}
                       aria-label={`תמונה ${i + 1}`}
-                      className={`h-1.5 rounded-full transition-all ${
-                        i === idx ? "w-6 bg-white" : "w-1.5 bg-white/60"
+                      className={`h-2.5 rounded-full border-2 border-foreground transition-all ${
+                        i === idx ? "w-7 bg-primary" : "w-2.5 bg-card"
                       }`}
                     />
                   ))}
@@ -85,22 +85,24 @@ export function ProductPreviewModal({
 
           <div className="flex flex-col gap-5 p-6">
             <DialogHeader className="text-right">
-              <DialogTitle className="text-2xl font-extrabold">
+              <DialogTitle className="font-display text-3xl">
                 {product.name}
               </DialogTitle>
-              <DialogDescription className="text-sm text-muted-foreground">
-                תצוגה מקדימה — הקובץ הסופי מגיע ללא סימן מים.
+              <DialogDescription className="text-sm text-foreground/70">
+                <span className="font-handwritten text-lg text-primary">
+                  הקובץ הסופי מגיע ללא סימן מים ✦
+                </span>
               </DialogDescription>
             </DialogHeader>
 
-            <p className="text-sm leading-relaxed text-foreground/80">
+            <p className="text-sm leading-relaxed text-foreground/85">
               {product.description}
             </p>
 
-            <div className="mt-auto rounded-xl border border-border bg-muted/50 p-4">
+            <div className="mt-auto rounded-2xl border-toy bg-muted p-4 shadow-toy-sm">
               <div className="mb-3 flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">מחיר:</span>
-                <span className="text-2xl font-extrabold text-primary">
+                <span className="text-sm font-bold text-foreground/70">מחיר:</span>
+                <span className="-rotate-2 rounded-xl border-toy bg-secondary px-3 py-1 font-display text-2xl shadow-toy-sm">
                   ₪{product.price}
                 </span>
               </div>
@@ -109,7 +111,7 @@ export function ProductPreviewModal({
                 onClick={onBuy}
                 disabled={buying}
                 size="lg"
-                className="w-full bg-brand-gradient text-white"
+                className="w-full rounded-xl border-toy bg-primary font-bold text-primary-foreground shadow-toy toy-press hover:bg-primary"
               >
                 {buying ? (
                   <Loader2 className="size-5 animate-spin" />
