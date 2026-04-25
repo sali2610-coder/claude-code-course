@@ -72,8 +72,8 @@ export function ProductCard({ product, index = 0 }: Props) {
           aria-label={`תצוגה מקדימה של ${product.name}`}
           className="relative block aspect-[4/3] overflow-hidden rounded-xl border-toy bg-muted transition-transform group-hover:rotate-1"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <motion.img
+            layoutId={`product-cover-${product.id}`}
             src={product.coverImage}
             alt={product.name}
             className="h-full w-full object-cover"

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { ArrowLeft, Download, ShoppingBag, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BlobShape, Sparkle, Star, CrayonUnderline } from "@/components/decorations";
@@ -60,17 +61,38 @@ const COLLAGE_ITEMS = [
 ];
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // back-most blobs drift slowest, foreground stickers drift fastest
+  const blobTopY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const blobBottomY = useTransform(scrollYProgress, [0, 1], [0, -90]);
+  const sparkleY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const collageY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const stickerY = useTransform(scrollYProgress, [0, 1], [0, -110]);
+  const badgeY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+
   return (
     <section
       id="top"
+      ref={sectionRef}
       className="relative overflow-hidden border-b-[3px] border-foreground"
     >
       {/* atmospheric shapes */}
-      <BlobShape className="pointer-events-none absolute -top-24 end-[-120px] -z-10 size-[300px] text-secondary/40 sm:size-[460px] sm:end-[-100px]" />
-      <BlobShape className="pointer-events-none absolute -bottom-32 start-[-160px] -z-10 size-[280px] text-tertiary/35 sm:size-[420px] sm:start-[-140px]" />
-      <Sparkle className="pointer-events-none absolute top-24 end-[12%] -z-10 hidden size-12 rotate-12 text-primary/60 sm:block" />
-      <Sparkle className="pointer-events-none absolute bottom-32 end-[40%] -z-10 hidden size-8 -rotate-12 text-accent/70 sm:block" />
-      <Star className="pointer-events-none absolute top-1/3 start-[8%] -z-10 hidden size-10 rotate-12 text-primary/30 sm:block" />
+      <motion.div style={{ y: blobTopY }} className="pointer-events-none absolute inset-0 -z-10">
+        <BlobShape className="absolute -top-24 end-[-120px] size-[300px] text-secondary/40 sm:size-[460px] sm:end-[-100px]" />
+      </motion.div>
+      <motion.div style={{ y: blobBottomY }} className="pointer-events-none absolute inset-0 -z-10">
+        <BlobShape className="absolute -bottom-32 start-[-160px] size-[280px] text-tertiary/35 sm:size-[420px] sm:start-[-140px]" />
+      </motion.div>
+      <motion.div style={{ y: sparkleY }} className="pointer-events-none absolute inset-0 -z-10 hidden sm:block">
+        <Sparkle className="absolute top-24 end-[12%] size-12 rotate-12 text-primary/60" />
+        <Sparkle className="absolute bottom-32 end-[40%] size-8 -rotate-12 text-accent/70" />
+        <Star className="absolute top-1/3 start-[8%] size-10 rotate-12 text-primary/30" />
+      </motion.div>
 
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:py-28">
         <motion.div
@@ -154,6 +176,7 @@ export function Hero() {
           variants={collageVariants}
           initial="hidden"
           animate="visible"
+          style={{ y: collageY }}
           className="relative mx-auto w-full max-w-[280px] sm:max-w-md"
         >
           <motion.div
@@ -191,6 +214,7 @@ export function Hero() {
           <motion.div
             animate={{ rotate: [0, 360] }}
             transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+            style={{ y: stickerY }}
             className="absolute -end-3 -top-4 z-20 grid size-14 place-items-center rounded-full border-toy bg-primary text-primary-foreground shadow-toy-sm sm:-end-6 sm:-top-8 sm:size-20 sm:shadow-toy"
           >
             <span className="font-handwritten text-base font-bold leading-tight text-center sm:text-2xl">
@@ -200,9 +224,12 @@ export function Hero() {
             </span>
           </motion.div>
 
-          <div className="absolute -start-2 bottom-6 z-20 -rotate-6 rounded-xl border-toy bg-secondary px-3 py-1.5 font-handwritten text-base font-bold shadow-toy-sm sm:-start-4 sm:bottom-8 sm:rounded-2xl sm:px-4 sm:py-2 sm:text-xl">
+          <motion.div
+            style={{ y: badgeY }}
+            className="absolute -start-2 bottom-6 z-20 -rotate-6 rounded-xl border-toy bg-secondary px-3 py-1.5 font-handwritten text-base font-bold shadow-toy-sm sm:-start-4 sm:bottom-8 sm:rounded-2xl sm:px-4 sm:py-2 sm:text-xl"
+          >
             8 חבילות מוכנות
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
