@@ -66,13 +66,13 @@ export function Hero() {
       className="relative overflow-hidden border-b-[3px] border-foreground"
     >
       {/* atmospheric shapes */}
-      <BlobShape className="pointer-events-none absolute -top-24 end-[-100px] -z-10 size-[460px] text-secondary/40" />
-      <BlobShape className="pointer-events-none absolute -bottom-32 start-[-140px] -z-10 size-[420px] text-tertiary/35" />
-      <Sparkle className="pointer-events-none absolute top-24 end-[12%] -z-10 size-12 text-primary/60 rotate-12" />
-      <Sparkle className="pointer-events-none absolute bottom-32 end-[40%] -z-10 size-8 text-accent/70 -rotate-12" />
-      <Star className="pointer-events-none absolute top-1/3 start-[8%] -z-10 size-10 text-primary/30 rotate-12" />
+      <BlobShape className="pointer-events-none absolute -top-24 end-[-120px] -z-10 size-[300px] text-secondary/40 sm:size-[460px] sm:end-[-100px]" />
+      <BlobShape className="pointer-events-none absolute -bottom-32 start-[-160px] -z-10 size-[280px] text-tertiary/35 sm:size-[420px] sm:start-[-140px]" />
+      <Sparkle className="pointer-events-none absolute top-24 end-[12%] -z-10 hidden size-12 rotate-12 text-primary/60 sm:block" />
+      <Sparkle className="pointer-events-none absolute bottom-32 end-[40%] -z-10 hidden size-8 -rotate-12 text-accent/70 sm:block" />
+      <Star className="pointer-events-none absolute top-1/3 start-[8%] -z-10 hidden size-10 rotate-12 text-primary/30 sm:block" />
 
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:py-28">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:py-28">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -89,31 +89,31 @@ export function Hero() {
 
           <motion.h1
             variants={itemVariants}
-            className="font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl"
+            className="font-display text-4xl leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl"
           >
             <span className="relative inline-block">
               הכל לגן
               <CrayonUnderline className="text-primary" />
             </span>
             <br />
-            <span className="relative inline-block bg-secondary px-3 py-0.5 -rotate-2 mt-2 border-toy shadow-toy">
+            <span className="relative inline-block bg-secondary px-3 py-0.5 -rotate-2 mt-2 border-toy shadow-toy-sm sm:shadow-toy">
               בקליק אחד.
             </span>
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="max-w-xl text-lg text-foreground/75 leading-relaxed"
+            className="max-w-xl text-base leading-relaxed text-foreground/75 sm:text-lg"
           >
             ספרייה דיגיטלית של חומרי הוראה מעוצבים, מוכנים להדפסה, לחגים,
-            לאוריינות ולעיצוב הגן. <span className="font-handwritten text-2xl text-primary">בחירה → תשלום → הורדה.</span>
+            לאוריינות ולעיצוב הגן. <span className="font-handwritten text-xl text-primary sm:text-2xl">בחירה → תשלום → הורדה.</span>
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+          <motion.div variants={itemVariants} className="flex w-full flex-wrap gap-3 sm:gap-4">
             <Button
               asChild
               size="lg"
-              className="group h-14 rounded-2xl border-toy bg-primary px-7 text-base font-extrabold text-primary-foreground shadow-toy toy-press hover:bg-primary"
+              className="group h-12 flex-1 rounded-2xl border-toy bg-primary px-5 text-sm font-extrabold text-primary-foreground shadow-toy-sm toy-press hover:bg-primary sm:h-14 sm:flex-none sm:px-7 sm:text-base sm:shadow-toy"
             >
               <a href="#gallery">
                 <ShoppingBag className="size-5" />
@@ -124,7 +124,7 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="h-14 rounded-2xl border-toy bg-card px-7 text-base font-extrabold text-foreground shadow-toy-sm toy-press hover:bg-card"
+              className="h-12 flex-1 rounded-2xl border-toy bg-card px-5 text-sm font-extrabold text-foreground shadow-toy-sm toy-press hover:bg-card sm:h-14 sm:flex-none sm:px-7 sm:text-base"
             >
               <a href="#how">איך זה עובד?</a>
             </Button>
@@ -154,7 +154,7 @@ export function Hero() {
           variants={collageVariants}
           initial="hidden"
           animate="visible"
-          className="relative mx-auto w-full max-w-md"
+          className="relative mx-auto w-full max-w-[280px] sm:max-w-md"
         >
           <motion.div
             animate={{ y: [0, -10, 0], rotate: [-1, 1, -1] }}
@@ -163,7 +163,7 @@ export function Hero() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="relative aspect-[4/5] rounded-[2rem] border-toy-thick bg-card p-4 shadow-toy-xl"
+            className="relative aspect-[4/5] rounded-[1.5rem] border-toy-thick bg-card p-3 shadow-toy-lg sm:rounded-[2rem] sm:p-4 sm:shadow-toy-xl"
           >
             {/* tape decoration */}
             <span className="absolute -top-3 start-1/2 z-10 h-7 w-24 -translate-x-1/2 rotate-[-4deg] border-2 border-foreground/40 bg-secondary/80" />
@@ -191,16 +191,16 @@ export function Hero() {
           <motion.div
             animate={{ rotate: [0, 360] }}
             transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-            className="absolute -end-6 -top-8 z-20 grid size-20 place-items-center rounded-full border-toy bg-primary text-primary-foreground shadow-toy"
+            className="absolute -end-3 -top-4 z-20 grid size-14 place-items-center rounded-full border-toy bg-primary text-primary-foreground shadow-toy-sm sm:-end-6 sm:-top-8 sm:size-20 sm:shadow-toy"
           >
-            <span className="font-handwritten text-2xl font-bold leading-tight text-center">
+            <span className="font-handwritten text-base font-bold leading-tight text-center sm:text-2xl">
               חדש!
               <br />
               ✦✦✦
             </span>
           </motion.div>
 
-          <div className="absolute -start-4 bottom-8 z-20 -rotate-6 rounded-2xl border-toy bg-secondary px-4 py-2 font-handwritten text-xl font-bold shadow-toy-sm">
+          <div className="absolute -start-2 bottom-6 z-20 -rotate-6 rounded-xl border-toy bg-secondary px-3 py-1.5 font-handwritten text-base font-bold shadow-toy-sm sm:-start-4 sm:bottom-8 sm:rounded-2xl sm:px-4 sm:py-2 sm:text-xl">
             8 חבילות מוכנות
           </div>
         </motion.div>

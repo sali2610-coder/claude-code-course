@@ -10,7 +10,9 @@ import type { Product } from "@/types/product";
 
 type Props = { product: Product; index?: number };
 
-const TILT = [-1.5, 1.2, -2, 0.8, 2, -1, 1.5, -0.5];
+// gentle tilt; kept small so rotated corners + chunky shadow stay inside the
+// viewport on narrow mobile screens.
+const TILT = [-1, 0.8, -1.3, 0.6, 1.2, -0.7, 1, -0.4];
 const TAPE_COLORS = ["bg-secondary", "bg-tertiary", "bg-accent/70", "bg-primary/80"];
 const TAPE_ROT = [-6, 4, -3, 7, -8, 2, -5, 5];
 
@@ -85,7 +87,7 @@ export function ProductCard({ product, index = 0 }: Props) {
 
         <div className="flex flex-1 flex-col gap-3 p-3 pt-4">
           <div className="flex items-start justify-between gap-3">
-            <h3 className="font-display text-2xl leading-tight">
+            <h3 className="font-display text-xl leading-tight sm:text-2xl">
               {product.name}
             </h3>
             <span className="shrink-0 -rotate-3 rounded-xl border-toy bg-secondary px-3 py-1 text-base font-extrabold shadow-toy-sm">

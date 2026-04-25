@@ -51,7 +51,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden py-24">
+    <section id="contact" className="relative overflow-hidden py-16 sm:py-24">
       <Sparkle className="pointer-events-none absolute end-[8%] top-12 size-10 text-primary -rotate-12" />
       <Sparkle className="pointer-events-none absolute start-[6%] bottom-16 size-14 text-tertiary rotate-12" />
 
@@ -66,7 +66,7 @@ export function Contact() {
           <span className="inline-block -rotate-2 rounded-full border-toy bg-primary px-4 py-1 text-xs font-bold text-primary-foreground shadow-toy-sm">
             ✦ צרי קשר ✦
           </span>
-          <h2 className="mt-4 font-display text-4xl sm:text-5xl">
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl">
             <span className="relative inline-block">
               דברי איתי
               <CrayonUnderline className="text-primary" />
@@ -141,7 +141,7 @@ export function Contact() {
                 delay: 0.1,
               }}
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col gap-4 rounded-2xl border-toy-thick bg-card p-6 shadow-toy"
+              className="flex flex-col gap-4 rounded-2xl border-toy-thick bg-card p-5 shadow-toy sm:p-6"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <FormField

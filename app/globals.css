@@ -124,18 +124,27 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply font-sans;
+    /* allow sticky/fixed children to escape stacking context but contain h-overflow */
+    overflow-x: clip;
+  }
   body {
     @apply bg-background text-foreground;
     background-image:
       radial-gradient(circle at 1px 1px, oklch(0.18 0.04 30 / 0.06) 1px, transparent 0);
     background-size: 28px 28px;
-  }
-  html {
-    @apply font-sans;
+    overflow-x: clip;
+    /* respect iOS safe areas */
+    padding-bottom: env(safe-area-inset-bottom, 0);
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
+  }
+  /* tap-target hint for inputs / iOS auto-zoom prevention */
+  input, textarea, select {
+    font-size: max(16px, 1em);
   }
 }
 

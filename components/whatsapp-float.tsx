@@ -33,10 +33,13 @@ export function WhatsAppFloat() {
         transition: { type: "spring", stiffness: 300, damping: 10 },
       }}
       whileTap={{ scale: 0.9, rotate: -8 }}
-      className="fixed bottom-6 left-6 z-50 grid size-16 place-items-center rounded-2xl border-toy bg-tertiary shadow-toy-lg"
+      style={{
+        bottom: "calc(1rem + env(safe-area-inset-bottom, 0))",
+      }}
+      className="fixed left-4 z-50 grid size-14 place-items-center rounded-2xl border-toy bg-tertiary shadow-toy sm:left-6 sm:size-16 sm:shadow-toy-lg"
     >
-      <MessageCircle className="size-7" strokeWidth={2.5} />
-      <span className="pointer-events-none absolute -end-2 -top-2 grid size-6 place-items-center rounded-full border-2 border-foreground bg-primary text-[10px] font-extrabold text-primary-foreground">
+      <MessageCircle className="size-6 sm:size-7" strokeWidth={2.5} />
+      <span className="pointer-events-none absolute -end-2 -top-2 grid size-5 place-items-center rounded-full border-2 border-foreground bg-primary text-[10px] font-extrabold text-primary-foreground sm:size-6">
         ✦
       </span>
     </motion.a>

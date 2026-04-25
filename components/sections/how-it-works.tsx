@@ -37,7 +37,7 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <section id="how" className="relative overflow-hidden py-24">
+    <section id="how" className="relative overflow-hidden py-16 sm:py-24">
       {/* stripes background accent */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-3 bg-stripes opacity-30" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-3 bg-stripes opacity-30" />
@@ -53,7 +53,7 @@ export function HowItWorks() {
           <span className="inline-block rotate-2 rounded-full border-toy bg-tertiary px-4 py-1 text-xs font-bold shadow-toy-sm">
             ✦ 4 צעדים ✦
           </span>
-          <h2 className="mt-4 font-display text-4xl sm:text-5xl">
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl">
             איך זה{" "}
             <span className="relative inline-block">
               עובד?
@@ -65,7 +65,7 @@ export function HowItWorks() {
           </p>
         </motion.div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
           {STEPS.map((step, i) => (
             <motion.div
               key={step.title}

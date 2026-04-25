@@ -47,7 +47,7 @@ export function Newsletter() {
   }
 
   return (
-    <section id="newsletter" className="border-y-[3px] border-foreground bg-accent py-24">
+    <section id="newsletter" className="border-y-[3px] border-foreground bg-accent py-16 sm:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.85, rotate: -2 }}
@@ -59,26 +59,26 @@ export function Newsletter() {
             damping: 14,
           }}
           whileHover={{ rotate: 0, transition: { type: "spring", stiffness: 250 } }}
-          className="relative overflow-hidden rounded-3xl border-toy-thick bg-secondary p-10 shadow-toy-xl sm:p-14"
+          className="relative overflow-hidden rounded-3xl border-toy-thick bg-secondary p-7 shadow-toy-lg sm:p-14 sm:shadow-toy-xl"
         >
           <Confetti />
 
-          {/* corner star */}
-          <Star className="pointer-events-none absolute -end-6 -top-6 size-24 text-primary rotate-12" />
-          <Star className="pointer-events-none absolute -bottom-8 -start-4 size-16 text-tertiary -rotate-12" />
+          {/* corner stars */}
+          <Star className="pointer-events-none absolute -end-3 -top-3 size-16 rotate-12 text-primary sm:-end-6 sm:-top-6 sm:size-24" />
+          <Star className="pointer-events-none absolute -bottom-4 -start-2 size-12 -rotate-12 text-tertiary sm:-bottom-8 sm:-start-4 sm:size-16" />
 
           <div className="relative text-center">
-            <span className="inline-flex -rotate-2 items-center gap-2 rounded-full border-toy bg-card px-4 py-1.5 text-sm font-bold shadow-toy-sm">
+            <span className="inline-flex -rotate-2 items-center gap-2 rounded-full border-toy bg-card px-3 py-1 text-xs font-bold shadow-toy-sm sm:px-4 sm:py-1.5 sm:text-sm">
               <Gift className="size-4" /> מתנה ראשונה בחינם
             </span>
-            <h2 className="mt-5 font-display text-4xl leading-tight sm:text-5xl">
+            <h2 className="mt-5 font-display text-3xl leading-tight sm:text-4xl md:text-5xl">
               הצטרפי לקהילת
               <br />
-              <span className="inline-block bg-card border-toy px-4 py-1 mt-2 -rotate-1 shadow-toy">
+              <span className="inline-block bg-card border-toy px-3 py-1 mt-2 -rotate-1 shadow-toy-sm sm:px-4 sm:shadow-toy">
                 הגננות שלנו
               </span>
             </h2>
-            <p className="mt-5 font-handwritten text-2xl">
+            <p className="mt-5 font-handwritten text-xl sm:text-2xl">
               ותקבלי קובץ הדפסה חינמי מייד למייל ✦
             </p>
 

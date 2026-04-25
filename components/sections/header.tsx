@@ -27,14 +27,14 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <a
           href="#top"
-          className="group flex items-center gap-3 font-display text-2xl font-extrabold leading-none"
+          className="group flex items-center gap-2 font-display text-lg font-extrabold leading-none sm:gap-3 sm:text-2xl"
         >
-          <span className="relative grid size-12 place-items-center rounded-2xl border-toy bg-primary text-primary-foreground shadow-toy-sm transition-transform group-hover:-rotate-6">
-            <Star className="size-6 text-secondary" />
+          <span className="relative grid size-10 place-items-center rounded-xl border-toy bg-primary text-primary-foreground shadow-toy-sm transition-transform group-hover:-rotate-6 sm:size-12 sm:rounded-2xl">
+            <Star className="size-5 text-secondary sm:size-6" />
           </span>
           <span className="flex flex-col">
             <span>{SITE.name}</span>
-            <span className="font-handwritten text-base text-primary leading-none -mt-0.5">
+            <span className="font-handwritten text-sm text-primary leading-none -mt-0.5 sm:text-base">
               ✦ kindergarten ✦
             </span>
           </span>

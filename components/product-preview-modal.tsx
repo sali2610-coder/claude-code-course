@@ -37,9 +37,9 @@ export function ProductPreviewModal({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-3xl overflow-hidden rounded-3xl border-toy-thick bg-card p-0 shadow-toy-xl">
+      <DialogContent className="max-h-[92vh] w-[calc(100vw-1.5rem)] max-w-3xl overflow-hidden overflow-y-auto rounded-2xl border-toy-thick bg-card p-0 shadow-toy-lg sm:rounded-3xl sm:shadow-toy-xl">
         <div className="grid gap-0 md:grid-cols-[1.2fr_1fr]">
-          <div className="relative aspect-[4/3] border-b-[3px] border-foreground bg-muted md:aspect-auto md:border-b-0 md:border-e-[3px]">
+          <div className="relative aspect-[5/4] border-b-[3px] border-foreground bg-muted sm:aspect-[4/3] md:aspect-auto md:border-b-0 md:border-e-[3px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={images[idx]}
@@ -54,17 +54,17 @@ export function ProductPreviewModal({
                     setIdx((i) => (i - 1 + images.length) % images.length)
                   }
                   aria-label="הקודם"
-                  className="absolute start-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full border-toy bg-card shadow-toy-sm toy-press"
+                  className="absolute start-2 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-full border-toy bg-card shadow-toy-sm toy-press sm:start-3 sm:size-10"
                 >
-                  <ChevronRight className="size-5 rtl:rotate-180" />
+                  <ChevronRight className="size-4 rtl:rotate-180 sm:size-5" />
                 </button>
                 <button
                   type="button"
                   onClick={() => setIdx((i) => (i + 1) % images.length)}
                   aria-label="הבא"
-                  className="absolute end-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full border-toy bg-card shadow-toy-sm toy-press"
+                  className="absolute end-2 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-full border-toy bg-card shadow-toy-sm toy-press sm:end-3 sm:size-10"
                 >
-                  <ChevronLeft className="size-5 rtl:rotate-180" />
+                  <ChevronLeft className="size-4 rtl:rotate-180 sm:size-5" />
                 </button>
                 <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
                   {images.map((_, i) => (
@@ -83,9 +83,9 @@ export function ProductPreviewModal({
             )}
           </div>
 
-          <div className="flex flex-col gap-5 p-6">
+          <div className="flex flex-col gap-4 p-5 sm:gap-5 sm:p-6">
             <DialogHeader className="text-right">
-              <DialogTitle className="font-display text-3xl">
+              <DialogTitle className="font-display text-2xl sm:text-3xl">
                 {product.name}
               </DialogTitle>
               <DialogDescription className="text-sm text-foreground/70">
